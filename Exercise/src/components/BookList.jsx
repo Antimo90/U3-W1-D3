@@ -1,14 +1,28 @@
 import { Component } from "react";
-import fantasy from "../data/fantasy.json";
-import history from "../data/history.json";
-import horror from "../data/horror.json";
-import romance from "../data/romance.json";
-import scifi from "../data/scifi.json";
+import SingleBook from "./SingleBook";
+import { Row, Col, Container } from "react-bootstrap";
 
 class BookList extends Component {
   render() {
-    const allBooks = [...fantasy, ...history, ...horror, ...romance, ...scifi];
-    return <></>;
+    const { books } = this.props;
+
+    return (
+      <Container className="mt-5">
+        <Row className="g-4">
+          {books.map((book) => (
+            <Col
+              xs={12}
+              md={6}
+              lg={3}
+              key={book.asin}
+              className="d-flex align-items-stretch"
+            >
+              <SingleBook book={book} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    );
   }
 }
 
